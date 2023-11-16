@@ -4,23 +4,20 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 ```bash
-npx create-next-app . -e https://github.com/LordGhapa/next-template-initial
-```
-```bash
 npm install -g commitizen
 ```
 ```bash
 npm install --global cz-conventional-emoji
 ```
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm i
 ```
+```bash
+npm run dev
+
+```
+para fazer commit git add . 
+npm run commit
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
