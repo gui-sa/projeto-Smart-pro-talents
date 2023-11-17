@@ -24,55 +24,60 @@ export default function Candidatos() {
 
 
   return (
-    <>
-        <Link href="/">
-            <Button>Voltar</Button>
-        </Link>
+    <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">
+      <div className="my-12 text-white flex flex-col justify-center items-center gap-3 md:flex-row lg:flex-row lg:gap-12 ">
+          <Link href="/">
+              <Button>Voltar</Button>
+          </Link>
+          <Link href="/formularios">
+              <Button cor="blue">Novo Talento</Button>
+          </Link>
+      </div>
       <CardCandidatos />
       <table className="table-auto">
         <thead>
-          <tr>
-            <th className="border border-black divide-y divide-black">id</th>
-            <th className="border border-black divide-y divide-black">Nome</th>
-            <th className="border border-black divide-y divide-black">CPF</th>
-            <th className="border border-black divide-y divide-black">Descricao</th>
-            <th className="border border-black divide-y divide-black">Contato</th>
-            <th className="border border-black divide-y divide-black">Contato 2</th>
-            <th className="border border-black divide-y divide-black">Nascimento</th>
-            <th className="border border-black divide-y divide-black">Pais</th>
-            <th className="border border-black divide-y divide-black">UF</th>
-            <th className="border border-black divide-y divide-black">Cidade</th>
-            <th className="border border-black divide-y divide-black">Rua</th>
-            <th className="border border-black divide-y divide-black">Habilidades</th>
+          <tr className="text-center text-xl font-medium text-white ">
+            <th className="border border-white divide-y divide-white px-3">id</th>
+            <th className="border border-white divide-y divide-white px-3">Nome</th>
+            <th className="border border-white divide-y divide-white px-3">CPF</th>
+            <th className="border border-white divide-y divide-white px-3">Descricao</th>
+            <th className="border border-white divide-y divide-white px-3">Contato</th>
+            <th className="border border-white divide-y divide-white px-3">Contato 2</th>
+            <th className="border border-white divide-y divide-white px-3">Nascimento</th>
+            <th className="border border-white divide-y divide-white px-3">Pais</th>
+            <th className="border border-white divide-y divide-white px-3">UF</th>
+            <th className="border border-white divide-y divide-white px-3">Cidade</th>
+            <th className="border border-white divide-y divide-white px-3">Rua</th>
+            <th className="border border-white divide-y divide-white px-3">Habilidades</th>
           </tr>
         </thead>
         <tbody>
-        <tr>
+        
             {
                     json.map((obj:any)=>{
                         return(
-                            <>
-                                <td className="border border-black divide-y divide-black">{obj.id}</td>
-                                <td className="border border-black divide-y divide-black">{obj.name}</td>
-                                <td className="border border-black divide-y divide-black">{obj.cpf}</td>
-                                <td className="border border-black divide-y divide-black">{obj.description}</td>
-                                <td className="border border-black divide-y divide-black">{obj.contact}</td>
-                                <td className="border border-black divide-y divide-black">{obj.contact2}</td>
-                                <td className="border border-black divide-y divide-black">{obj.date_birth}</td>
-                                <td className="border border-black divide-y divide-black">{obj.pais}</td>
-                                <td className="border border-black divide-y divide-black">{obj.uf}</td>
-                                <td className="border border-black divide-y divide-black">{obj.city}</td>
-                                <td className="border border-black divide-y divide-black">{obj.street}</td>
-                                <td className="border border-black divide-y divide-black">{obj.skills}</td>
-                            </>
+                          <tr className="text-center text-md font-medium text-white">
+                                <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.name}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.cpf}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.description}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.contact}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.contact2}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.date_birth}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.pais}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.uf}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.city}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.street}</td>
+                                <td className="border border-white divide-y divide-white px-3">{obj.skills}</td>
+                            </tr>
                         );
                     })
                 
             }
-          </tr>
+          
         </tbody>
       </table>
 
-    </>
+    </div>
   );
 }
