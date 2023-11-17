@@ -1,9 +1,9 @@
 "use client"
-import CardCandidatos from "@/components/CardCandidatos";
+
 import Link from "next/link";
 import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
-import {supabase} from "../../libs/supabase"
+// import {supabase} from "../../libs/supabase"
 
 export interface iVagas {
   id:number,
@@ -71,11 +71,11 @@ export default function Vagas() {
           <Link href="/">
               <Button>Voltar</Button>
           </Link>
-          <Link href="/formularios">
+          <Link href="/vagas/create">
               <Button cor="blue">Nova Empresa</Button>
           </Link>
       </div>
-      <CardCandidatos />
+   
       <table className="table-auto">
         <thead>
           <tr className="text-center text-xl font-medium text-white ">

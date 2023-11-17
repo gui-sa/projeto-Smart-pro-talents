@@ -33,35 +33,37 @@ errors: erro,
 requiredInput,
 WidthHalf,
 input,...props} ,  ref) => {
-  return <>
-  <div className={` flex flex-col ${className}`}>
-    <label className="mb-4" htmlFor={label}>
-      <p className="text-xl">
-        {label}
-        <span className="ml-2 text-xl text-primaryGrayLight">
-          {requiredInput && "*"}
-        </span>
-      </p>
-    </label>
+  return (
+    <>
+      <div className={` flex flex-col ${className}`}>
+        <label className="mb-4" htmlFor={label}>
+          <p className="text-xl">
+            {label}
+            <span className="ml-2 text-xl text-primaryGrayLight">
+              {requiredInput && "*"}
+            </span>
+          </p>
+        </label>
 
-    {input === "input" && (
-      <input
-      ref={ref}
-      {...props}
-   
-        className={`h-[71px] w-full bg-primaryDark py-6 pl-5 `}
-       />
-    )}
-    {input === "textarea" && (
-      <input
-      {...props}
-        className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}
-    
-      />
-    )}
-    <p className="text-red-500">{erro}</p>
-  </div>
-</>
+        {input === "input" && (
+          <input
+            ref={ref}
+            {...props}
+            id={label}
+            className={`h-[71px] w-full bg-primaryDark py-6 pl-5 `}
+          />
+        )}
+        {input === "textarea" && (
+          <input
+            id={label}
+            {...props}
+            className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}
+          />
+        )}
+        <p className="text-red-500">{erro}</p>
+      </div>
+    </>
+  );
 
 }) 
 export default Input

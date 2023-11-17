@@ -1,7 +1,7 @@
-"use client";
-
+"use client"
 import FormCandidato from "@/components/Forms/Candidato";
-export default function Formulario() {
+
+export default function createCandidates() {
   return (
     <>
       <FormCandidato />

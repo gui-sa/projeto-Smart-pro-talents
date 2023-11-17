@@ -1,7 +1,7 @@
 import Button from "../../Button";
 import Input from "../../Input";
 
-export default function FormVaga() {
+export default function FormVacancies() {
   return (
     <>
       <div className=" flex min-h-screen items-center justify-center bg-primaryDark">
@@ -10,7 +10,12 @@ export default function FormVaga() {
             Preencha o seu perfil da Vaga
           </h1>
           <form className="flex w-full flex-col gap-2 text-white">
-            <Input label="Nome" required placeholder="Vaga developer" />
+            <Input
+              input="input"
+              label="Nome"
+              required
+              placeholder="Vaga developer"
+            />
             <Input
               label="Descrição"
               input="textarea"
@@ -19,12 +24,14 @@ export default function FormVaga() {
             />
             <div className="flex flex-col  gap-4 sm:flex-row">
               <Input
+                input="input"
                 label="Tipo"
                 className="sm:w-full"
                 placeholder="CLT/PJ/Freelancer"
                 required
               />
               <Input
+                input="input"
                 label="Modelo de Contrato"
                 className="sm:w-full"
                 required
@@ -34,6 +41,7 @@ export default function FormVaga() {
 
             <div className="flex flex-col  gap-4 sm:flex-row">
               <Input
+                input="input"
                 label="Dia Hora"
                 className="sm:w-full"
                 placeholder=""
@@ -41,6 +49,7 @@ export default function FormVaga() {
                 type="number"
               />
               <Input
+                input="input"
                 label="Salario Mínimo"
                 className="sm:w-full"
                 placeholder=""
@@ -48,6 +57,7 @@ export default function FormVaga() {
                 type="number"
               />
               <Input
+                input="input"
                 label="Salario Máximo"
                 className="sm:w-full"
                 placeholder=""
@@ -57,6 +67,7 @@ export default function FormVaga() {
             </div>
             <div className="flex flex-col  gap-4 sm:flex-row">
               <Input
+                input="input"
                 label="Salario Mínimo"
                 className="sm:w-full"
                 placeholder=""
@@ -64,6 +75,7 @@ export default function FormVaga() {
                 type="number"
               />
               <Input
+                input="input"
                 label="Salario Máximo"
                 className="sm:w-full"
                 placeholder=""
@@ -79,12 +91,14 @@ export default function FormVaga() {
             />
             <div className="flex flex-col  gap-4 sm:flex-row">
               <Input
+                input="input"
                 label="Nível"
                 className="sm:w-full"
                 placeholder=""
                 required
               />
               <Input
+                input="input"
                 label="Duração em Meses"
                 className="sm:w-full"
                 placeholder="48"

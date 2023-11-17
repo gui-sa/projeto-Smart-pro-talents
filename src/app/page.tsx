@@ -16,9 +16,7 @@ export default function Home() {
         </div>
         <Link className="mt-3" href="/vagas">
           <Button> Vagas</Button>
-        </Link>
-        
-        
+        </Link>      
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import Input from "../../Input";
 import {useForm, FormProvider} from "react-hook-form"
 import * as zod from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
+
 export const createSchema = zod.object({
   name: zod.string().min(1,"O digite o nome"),
   email: zod.string().email("Preencha corretamente o Email").min(1,"O email é obrigatorio"),
@@ -21,6 +22,7 @@ export const createSchema = zod.object({
 })
 export type formTypeCandidato = zod.infer<typeof createSchema>;
  
+
 export default function FormCandidato() {
   const useFormulario = useForm<formTypeCandidato>({
     resolver:zodResolver(createSchema)

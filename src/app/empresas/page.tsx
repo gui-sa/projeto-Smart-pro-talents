@@ -1,5 +1,4 @@
 "use client"
-import CardCandidatos from "@/components/CardCandidatos";
 import Link from "next/link";
 import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
@@ -46,11 +45,10 @@ export default function Empresa() {
           <Link href="/">
               <Button>Voltar</Button>
           </Link>
-          <Link href="/formularios">
+          <Link href="/empresas/create">
               <Button cor="blue">Nova Empresa</Button>
           </Link>
       </div>
-      <CardCandidatos />
       <table className="table-auto">
         <thead>
           <tr className="text-center text-xl font-medium text-white ">
