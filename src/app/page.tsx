@@ -18,23 +18,7 @@ export default function Home() {
           <Button> Vagas</Button>
         </Link>
         
-        <div className="flex w-full flex-wrap bg-[#131313] p-3 text-xl">
-          <Input
-            WidthHalf
-            label="ola"
-            type="text"
-            required
-            placeholder="sou um temporario"
-          />
-
-          <Input
-            WidthHalf
-            label="ola"
-            type="text"
-            required
-            placeholder="sou um temporario"
-          />
-        </div>
+        
       </div>
     </>
   );
