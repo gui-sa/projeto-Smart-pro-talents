@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="flex h-screen flex-col items-center justify-center  bg-primaryDark text-white">
         <div className="flex flex-row gap-3">
-          <Link href="/empresa">
+          <Link href="/empresas">
             <Button>Empresa</Button>
           </Link>
           <Link href="/candidatos">

@@ -1,69 +1,104 @@
-import {useState} from "react"
-export interface ICompany {
+"use client"
+import CardCandidatos from "@/components/CardCandidatos";
+import Link from "next/link";
+import Button from "@/components/Button";
+import { useState, useEffect } from 'react'
+import {supabase} from "../../libs/supabase"
+
+export interface iEmpresa {
   id:number,
-  nome: string,
+  name:string,
+  cnpj:string,
   email:string,
-  cnpj: string,
-  pais:string,
-  ramo: string,
-  missao: string,
-  cultura:string,
-  razao:string,
-  contact: string,
+  branch:string,
+  culture:string,
+  reason:string,
+  mission:string,
+  fk_user_id:number,
+  contact:string,
   contact2:string,
+  country:string,
   uf:string,
   city:string,
+  cep:string,
   street:string,
-  cep?:string,
-  user_id?: number
+  created_at:string
 }
+
 export default function Empresa() {
-   const dados : ICompany[] = [{id:1,nome: "Smart Soft", email:"smart@gmail.com",cnpj: "543223232", city:"São Paulo",uf:"SP",contact:"+55 121312", contact2: "+55 2312331",cultura:"cultura da empresa",ramo:"Ramo da empresa",missao:"Missao da empresa",pais:"Brasil", razao:"Razao da empresa",street:"Rua da empresa",cep:"31312313123"}]
-    
-   
-    return (
-        <table className="table-auto">
-            <thead>
-                <tr>
-                    <th className="border border-black divide-y divide-black">Nome</th>
-                    <th className="border border-black divide-y divide-black">Cnpj</th>
-                    <th className="border border-black divide-y divide-black">Email</th>
-                    <th className="border border-black divide-y divide-black">Missao</th>
-                    <th className="border border-black divide-y divide-black">Razao</th>
-                    <th className="border border-black divide-y divide-black">Ramo</th>
-                    <th className="border border-black divide-y divide-black">cultura</th>
-                    <th className="border border-black divide-y divide-black">País</th>
-                    <th className="border border-black divide-y divide-black">uf</th> 
-                    <th className="border border-black divide-y divide-black">city</th> 
-                    <th className="border border-black divide-y divide-black">street</th> 
-                    <th className="border border-black divide-y divide-black">cep</th> 
-                    <th className="border border-black divide-y divide-black">contact</th>
-                    <th className="border border-black divide-y divide-black">contact2</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    dados.map((company) => (
-                    <tr key={company.id}>
-                            <td>{company.nome}</td>
-                            <td>{company.cnpj}</td>
-                            <td>{company.email}</td>
-                            <td>{company.missao}</td>
-                            <td>{company.razao}</td>
-                            <td>{company.ramo}</td>
-                            <td>{company.cultura}</td>
-                            <td>{company.pais}</td>
-                            <td>{company.uf}</td>
-                            <td>{company.city}</td>
-                            <td>{company.street}</td>
-                            <td>{company.cep}</td>
-                            <td>{company.contact}</td>
-                            <td>{company.contact2}</td>    
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
-    )
+  
+    const [json, setJson] = useState<iEmpresa[]>([]);
+
+    useEffect(() => {
+
+        (async () => {
+          const dados = await supabase.from("companies").select();
+          const data = dados.data || [];
+          setJson(data);
+        })();
+      
+    }, []);
+
+
+  return (
+    <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">
+      <div className="my-12 text-white flex flex-col justify-center items-center gap-3 md:flex-row lg:flex-row lg:gap-12 ">
+          <Link href="/">
+              <Button>Voltar</Button>
+          </Link>
+          <Link href="/formularios">
+              <Button cor="blue">Nova Empresa</Button>
+          </Link>
+      </div>
+      <CardCandidatos />
+      <table className="table-auto">
+        <thead>
+          <tr className="text-center text-xl font-medium text-white ">
+            <th className="border border-white divide-y divide-white px-3">id</th>
+            <th className="border border-white divide-y divide-white px-3">Nome</th>
+            <th className="border border-white divide-y divide-white px-3">Razão Social</th>
+            <th className="border border-white divide-y divide-white px-3">CNPJ</th>
+            <th className="border border-white divide-y divide-white px-3">E-mail</th>
+            <th className="border border-white divide-y divide-white px-3">Ramo</th>
+            <th className="border border-white divide-y divide-white px-3">Cultura</th>
+            <th className="border border-white divide-y divide-white px-3">Missão</th>
+            <th className="border border-white divide-y divide-white px-3">Contato</th>
+            <th className="border border-white divide-y divide-white px-3">Contato 2</th>
+            <th className="border border-white divide-y divide-white px-3">Pais</th>
+            <th className="border border-white divide-y divide-white px-3">UF</th>
+            <th className="border border-white divide-y divide-white px-3">Cidade</th>
+            <th className="border border-white divide-y divide-white px-3">CEP</th>
+            <th className="border border-white divide-y divide-white px-3">Rua</th>
+          </tr>
+        </thead>
+        <tbody>
+            {
+                    json.map((obj:iEmpresa)=>{
+                        return(
+                          <tr className="text-center text-md font-medium text-white">
+                            <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.name}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.reason}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.cnpj}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.email}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.branch}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.culture}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.mission}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.contact}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.contact2}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.country}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.uf}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.city}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.cep}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.street}</td>
+                            </tr>
+                        );
+                    })
+            }
+          
+        </tbody>
+      </table>
+
+    </div>
+  );
 }

@@ -1,27 +1,84 @@
 "use client";
 
+import {useFormContext} from "react-hook-form";
+import {formTypeCandidato} from "./../Forms/Candidato";
+import {InputHTMLAttributes,forwardRef} from "react";
+
 type InputProps = {
   type?: "text" | "email" | "password" | "date" | "number";
   label?: string;
-  required?: boolean;
+  requiredInput?: boolean;
   placeholder?: string;
   WidthHalf?: boolean;
   className?: string;
-  value?: any;
-  setValue?: (value: any) => void;
   input?: "input" | "textarea";
+  errors: string | undefined
+};
+type InputProp = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string;
+  requiredInput?: boolean;
+  WidthHalf?: boolean;
+  className?: string;
+  input?: "input" | "textarea";
+  errors: string | undefined;
 };
 
+
+const Input = forwardRef<HTMLInputElement, InputProp>(({
+type = "text",
+label,
+className = "",
+errors: erro,
+requiredInput,
+WidthHalf,
+input,...props} ,  ref) => {
+  return <>
+  <div className={` flex flex-col ${className}`}>
+    <label className="mb-4" htmlFor={label}>
+      <p className="text-xl">
+        {label}
+        <span className="ml-2 text-xl text-primaryGrayLight">
+          {requiredInput && "*"}
+        </span>
+      </p>
+    </label>
+
+    {input === "input" && (
+      <input
+      ref={ref}
+      {...props}
+   
+        className={`h-[71px] w-full bg-primaryDark py-6 pl-5 `}
+       />
+    )}
+    {input === "textarea" && (
+      <input
+      {...props}
+        className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}
+    
+      />
+    )}
+    <p className="text-red-500">{erro}</p>
+  </div>
+</>
+
+}) 
+export default Input
+/*
 export default function Input({
   type = "text",
   label,
-  required,
   placeholder,
   className = "",
-  value,
-  input = "input",
-  setValue,
+  errors: erro,
+  requiredInput,
+  WidthHalf,
+  input,...props
 }: InputProps) {
+
+
+  const {register, formState: {errors} } = useFormContext<formTypeCandidato>()
+
   return (
     <>
       <div className={` flex flex-col ${className}`}>
@@ -29,35 +86,29 @@ export default function Input({
           <p className="text-xl">
             {label}
             <span className="ml-2 text-xl text-primaryGrayLight">
-              {required && "*"}
+              {requiredInput && "*"}
             </span>
           </p>
         </label>
 
         {input === "input" && (
           <input
-            autoComplete="off"
-            id={label}
-            type={type}
-            value={value}
-            onChange={(e) => setValue?.(e.target.value)}
+          {...props}
             className={`h-[71px] w-full bg-primaryDark py-6 pl-5 `}
             placeholder={placeholder}
-            required={required}
-          />
+           />
         )}
         {input === "textarea" && (
           <textarea
-            autoComplete="off"
-            id={label}
-            value={value}
-            onChange={(e) => setValue?.(e.target.value)}
+          {...props}
             className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}
             placeholder={placeholder}
-            required={required}
+        
           />
         )}
+        <p className="text-red-500">{erro}</p>
       </div>
     </>
   );
 }
+*/
