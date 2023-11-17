@@ -75,7 +75,7 @@ export default function Empresa() {
             {
                     json.map((obj:iEmpresa)=>{
                         return(
-                          <tr className="text-center text-md font-medium text-white">
+                          <tr key={obj.id} className="text-center text-md font-medium text-white">
                             <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.name}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.reason}</td>

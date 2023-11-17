@@ -86,12 +86,12 @@ export default function Vagas() {
             <th className="border border-white divide-y divide-white px-3">Tipo</th>
             <th className="border border-white divide-y divide-white px-3">Modelo de Trabalho</th>
             <th className="border border-white divide-y divide-white px-3">Horas por dia</th>
-            <th className="border border-white divide-y divide-white px-3">Salario Minimo</th>
-            <th className="border border-white divide-y divide-white px-3">Salario Maximo</th>
+            <th className="border border-white divide-y divide-white px-3">Salario Mínimo</th>
+            <th className="border border-white divide-y divide-white px-3">Salario Máximo</th>
             <th className="border border-white divide-y divide-white px-3">Anos de Experiencia</th>
             <th className="border border-white divide-y divide-white px-3">Beneficios</th>
             <th className="border border-white divide-y divide-white px-3">Senioridade </th>
-            <th className="border border-white divide-y divide-white px-3">Duracao do contrato</th>
+            <th className="border border-white divide-y divide-white px-3">Duração do contrato</th>
             <th className="border border-white divide-y divide-white px-3">Idiomas</th>
             <th className="border border-white divide-y divide-white px-3">Status</th>
           </tr>
