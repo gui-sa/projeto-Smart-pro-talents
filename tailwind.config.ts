@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -14,6 +14,7 @@ const config: Config = {
         primaryGreen: "#193E1F",
         primaryGray: "#A4A4A4",
         primaryGrayLight: "#3C3C3C",
+        primaryGrayDark: "#131313",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -24,4 +25,4 @@ const config: Config = {
   },
   plugins: [],
 };
-export default config
+export default config;

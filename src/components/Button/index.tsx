@@ -16,7 +16,7 @@ export default function Button({
     <>
       <button
         type={type}
-        className={`flex w-80 items-center justify-center rounded  p-3 text-2xl ${className} ${color}`}
+        className={`flex w-80 max-w-full items-center justify-center rounded  p-3 text-2xl ${className} ${color}`}
       >
         {children}
       </button>
