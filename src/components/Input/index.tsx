@@ -1,6 +1,7 @@
+/* eslint-disable react/display-name */
 "use client";
 
-import {useFormContext} from "react-hook-form";
+// import {useFormContext} from "react-hook-form";
 import {formTypeCandidato} from "./../Forms/Candidato";
 import {InputHTMLAttributes,forwardRef} from "react";
 
@@ -12,7 +13,7 @@ type InputProps = {
   WidthHalf?: boolean;
   className?: string;
   input?: "input" | "textarea";
-  errors: string | undefined
+  errors?: string | undefined
 };
 type InputProp = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -20,7 +21,7 @@ type InputProp = InputHTMLAttributes<HTMLInputElement> & {
   WidthHalf?: boolean;
   className?: string;
   input?: "input" | "textarea";
-  errors: string | undefined;
+  errors?: string | undefined;
 };
 
 

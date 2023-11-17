@@ -40,12 +40,27 @@ export default function FormEmpresa() {
               />
             </div>
             <div className="flex flex-col  gap-4 sm:flex-row">
-              <Input label="Pais" className="sm:w-full" required placeholder="Brasil" />
-              <Input label="UF" className="sm:w-full" required  placeholder="RN"/>
-              <Input label="Cidade" className="sm:w-full" required  placeholder="Natal"/>
+              <Input
+                label="Pais"
+                className="sm:w-full"
+                required
+                placeholder="Brasil"
+              />
+              <Input
+                label="UF"
+                className="sm:w-full"
+                required
+                placeholder="RN"
+              />
+              <Input
+                label="Cidade"
+                className="sm:w-full"
+                required
+                placeholder="Natal"
+              />
             </div>
             <Input label="Endereço" required />
-            <Input label="CEP" required placeholder="99999-999"/>
+            <Input label="CEP" required placeholder="99999-999" />
             <Input label="Ramo" input="textarea" required />
             <Input label="Cultura" input="textarea" required />
             <Input label="Razão" input="textarea" required />

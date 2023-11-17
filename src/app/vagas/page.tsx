@@ -100,7 +100,7 @@ export default function Vagas() {
             {
                     json.map((obj:iVagasDTO)=>{
                         return(
-                          <tr className="text-center text-md font-medium text-white">
+                          <tr key={obj.id} className="text-center text-md font-medium text-white">
                             <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.title}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.description}</td>
