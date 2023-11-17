@@ -3,24 +3,40 @@ import CardCandidatos from "@/components/CardCandidatos";
 import Link from "next/link";
 import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
+import {supabase} from "../../libs/supabase"
+
+export interface iCandidatos{
+  id: number,
+  name: string,
+  email: string,
+  cpf: string,
+  description: string,
+  contact: string,
+  contact2: string,
+  date_birth: string,
+  pais: string,
+  uf: string,
+  city: string,
+  street: string,
+  fk_profission_id: number,
+  fk_user_id: number,
+  created_at: string,
+  skills: string
+};
 
 export default function Candidatos() {
-    const [json, setJson] = useState([])
 
+    const [json, setJson] = useState<iCandidatos[]>([])
+    
     useEffect(() => {
-      
-        fetch('https://zubnbzeluoigqrlekvwg.supabase.co/rest/v1/profissionals', {
-            method: 'GET',
-            headers: {
-              'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1Ym5iemVsdW9pZ3FybGVrdndnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk5ODg5OTQsImV4cCI6MjAxNTU2NDk5NH0.OWcr5QAqdHObatJtiUm3G5yBawPg-NAl3zUnJCV-pnA',
-              'Content-Type': 'application/json'
-            }
-           })
-            .then((res:any) => res.json())
-            .then((data:any) => {
-            setJson(data)
-            }).catch((e:any)=>console.log(e));
-        }, []);
+
+        (async () => {
+            const dados = await supabase.from("profissionals").select();
+            const data = dados.data || [];
+            setJson(data);
+        })();
+        
+      }, []);
 
 
   return (
@@ -54,7 +70,7 @@ export default function Candidatos() {
         <tbody>
         
             {
-                    json.map((obj:any)=>{
+                    json.map((obj:iCandidatos)=>{
                         return(
                           <tr className="text-center text-md font-medium text-white">
                                 <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
@@ -72,7 +88,6 @@ export default function Candidatos() {
                             </tr>
                         );
                     })
-                
             }
           
         </tbody>
