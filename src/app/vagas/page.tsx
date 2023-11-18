@@ -114,21 +114,21 @@ export default function Vagas() {
                     json.map((obj:iVagasDTO)=>{
                         return(
                           <tr key={obj.id} className="text-center text-md font-medium text-white">
-                            <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.title}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.description}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.companies.name}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.type}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.modal_contract}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.days_hour}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.min_salary}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.max_salary}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.exp_years}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.benefits}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.nivel}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.duration}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.languages}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.status}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.id}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.title}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.description}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.companies.name}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.type}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.modal_contract}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.days_hour}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.min_salary}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.max_salary}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.exp_years}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.benefits}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.nivel}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.duration}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.languages}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.status}</td>
                             </tr>
                         );
                     })
