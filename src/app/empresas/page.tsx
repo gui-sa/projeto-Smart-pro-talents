@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
 import {supabase} from "../../libs/supabase"
+import { iVagasDTO } from "../vagas/page";
 
 export interface iEmpresa {
   id:number,
@@ -22,6 +23,7 @@ export interface iEmpresa {
   cep:string,
   street:string,
   created_at:string
+  vacancies: iVagasDTO[]
 }
 
 export default function Empresa() {
@@ -31,13 +33,14 @@ export default function Empresa() {
     useEffect(() => {
 
         (async () => {
-          const dados = await supabase.from("companies").select();
+          const dados = await supabase.from("companies").select("*, vacancies(*)");
           const data = dados.data || [];
+        
           setJson(data);
         })();
       
     }, []);
-
+console.log(json)
 
   return (
     <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">

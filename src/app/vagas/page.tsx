@@ -3,8 +3,10 @@
 import Link from "next/link";
 import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
+import { iEmpresa } from "../empresas/page";
+import { supabase } from "@/libs/supabase";
 // import {supabase} from "../../libs/supabase"
-
+ 
 export interface iVagas {
   id:number,
   title:string,
@@ -21,7 +23,8 @@ export interface iVagas {
   languages: string,
   fk_company_id: number,
   created_at: string,
-  status: string
+  status: string,
+ 
 };
 
 export interface iVagasDTO {
@@ -40,7 +43,8 @@ export interface iVagasDTO {
   languages: string,
   company_name: string,
   created_at: string,
-  status: string
+  status: string,
+  companies: iEmpresa
 };
 
 export default function Vagas() {
@@ -50,8 +54,13 @@ export default function Vagas() {
 
 
     useEffect(() => {
-        
-            const consulta1 = fetch('https://zubnbzeluoigqrlekvwg.supabase.co/rest/v1/vacancies', {
+            (async()=>{
+              const {data,error} = await supabase.from("vacancies").select("*, companies(*)")
+              const dados = data || []
+              console.log(data)
+              setJson(dados)
+            })()
+         /*   const consulta1 = fetch('https://zubnbzeluoigqrlekvwg.supabase.co/rest/v1/vacancies', {
                 method: 'GET',
                 headers: {
                   'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1Ym5iemVsdW9pZ3FybGVrdndnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk5ODg5OTQsImV4cCI6MjAxNTU2NDk5NH0.OWcr5QAqdHObatJtiUm3G5yBawPg-NAl3zUnJCV-pnA',
@@ -60,10 +69,10 @@ export default function Vagas() {
               }).then((res) => res.json())
                 .then((data) => {
                 setJson(data)
+                
                 }).catch((e)=>console.log(e));
-
+*/
         }, []);
-
 
   return (
     <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">
@@ -104,7 +113,7 @@ export default function Vagas() {
                             <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.title}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.description}</td>
-                            <td className="border border-white divide-y divide-white px-3">{"JOIN DA EMPRESA"}</td>
+                            <td className="border border-white divide-y divide-white px-3">{obj.companies.name}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.type}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.modal_contract}</td>
                             <td className="border border-white divide-y divide-white px-3">{obj.days_hour}</td>
