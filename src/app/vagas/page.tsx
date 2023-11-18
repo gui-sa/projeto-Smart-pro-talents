@@ -47,7 +47,8 @@ export default function Vagas() {
 
     const [json, setJson] = useState<iVagasDTO[]>([])
 
-
+    const [loading,setLoading] = useState(true)
+ 
 
     useEffect(() => {
         
@@ -60,6 +61,7 @@ export default function Vagas() {
               }).then((res) => res.json())
                 .then((data) => {
                 setJson(data)
+                setLoading(false)
                 }).catch((e)=>console.log(e));
 
         }, []);
@@ -75,47 +77,49 @@ export default function Vagas() {
               <Button cor="blue">Nova Empresa</Button>
           </Link>
       </div>
-   
-      <table className="table-auto">
+      {loading && <h1 className="text-white text-lg font-bold mb-4">Carregando...</h1>}
+    
+   <div className="overflow-auto rounded-lg max-w-full xl:max-w-[1300px]">
+<table className="border-collapse w-full min-w-[600px]">
         <thead>
-          <tr className="text-center text-xl font-medium text-white ">
-            <th className="border border-white divide-y divide-white px-3">id</th>
-            <th className="border border-white divide-y divide-white px-3">Titulo</th>
-            <th className="border border-white divide-y divide-white px-3">Descricao</th>
-            <th className="border border-white divide-y divide-white px-3">Empresa</th>
-            <th className="border border-white divide-y divide-white px-3">Tipo</th>
-            <th className="border border-white divide-y divide-white px-3">Modelo de Trabalho</th>
-            <th className="border border-white divide-y divide-white px-3">Horas por dia</th>
-            <th className="border border-white divide-y divide-white px-3">Salario Mínimo</th>
-            <th className="border border-white divide-y divide-white px-3">Salario Máximo</th>
-            <th className="border border-white divide-y divide-white px-3">Anos de Experiencia</th>
-            <th className="border border-white divide-y divide-white px-3">Beneficios</th>
-            <th className="border border-white divide-y divide-white px-3">Senioridade </th>
-            <th className="border border-white divide-y divide-white px-3">Duração do contrato</th>
-            <th className="border border-white divide-y divide-white px-3">Idiomas</th>
-            <th className="border border-white divide-y divide-white px-3">Status</th>
+          <tr  className=" text-center text-xl font-medium text-white ">
+            <th className="text-sm bg-zinc-900 p-4">id</th>
+            <th className="text-sm bg-zinc-900 p-4">Titulo</th>
+            <th className="text-sm bg-zinc-900 p-4">Descricao</th>
+            <th className="text-sm bg-zinc-900 p-4">Empresa</th>
+            <th className="text-sm bg-zinc-900 p-4">Tipo</th>
+            <th className="text-sm bg-zinc-900 p-4">Modelo de Trabalho</th>
+            <th className="text-sm bg-zinc-900 p-4">Horas por dia</th>
+            <th className="text-sm bg-zinc-900 p-4">Salario Mínimo</th>
+            <th className="text-sm bg-zinc-900 p-4">Salario Máximo</th>
+            <th className="text-sm bg-zinc-900 p-4">Anos de Experiencia</th>
+            <th className="text-sm bg-zinc-900 p-4">Beneficios</th>
+            <th className="text-sm bg-zinc-900 p-4">Senioridade </th>
+            <th className="text-sm bg-zinc-900 p-4">Duração do contrato</th>
+            <th className="text-sm bg-zinc-900 p-4">Idiomas</th>
+            <th className="text-sm bg-zinc-900 p-4">Status</th>
           </tr>
         </thead>
         <tbody>
             {
                     json.map((obj:iVagasDTO)=>{
                         return(
-                          <tr key={obj.id} className="text-center text-md font-medium text-white">
-                            <td className="border border-white divide-y divide-white px-3">{obj.id}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.title}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.description}</td>
-                            <td className="border border-white divide-y divide-white px-3">{"JOIN DA EMPRESA"}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.type}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.modal_contract}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.days_hour}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.min_salary}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.max_salary}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.exp_years}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.benefits}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.nivel}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.duration}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.languages}</td>
-                            <td className="border border-white divide-y divide-white px-3">{obj.status}</td>
+                          <tr className="text-center text-xl font-medium text-white " >
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.id}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.title}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.description}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{"JOIN DA EMPRESA"}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.type}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.modal_contract}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.days_hour}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.min_salary}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.max_salary}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.exp_years}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.benefits}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.nivel}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.duration}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.languages}</td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.status}</td>
                             </tr>
                         );
                     })
@@ -124,6 +128,8 @@ export default function Vagas() {
         </tbody>
       </table>
 
+   </div>
+      
     </div>
   );
 }

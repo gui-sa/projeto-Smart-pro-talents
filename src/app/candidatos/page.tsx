@@ -25,12 +25,15 @@ export interface iCandidatos {
 
 export default function Candidatos() {
   const [json, setJson] = useState<iCandidatos[]>([]);
+  const [loading,setLoading] = useState(true)
+ 
 
   useEffect(() => {
     (async () => {
       const dados = await supabase.from("profissionals").select();
       const data = dados.data || [];
       setJson(data);
+      setLoading(false)
     })();
   }, []);
 
@@ -44,43 +47,46 @@ export default function Candidatos() {
           <Button cor="blue">Novo Talento</Button>
         </Link>
       </div>
+      {loading && <h1 className="text-white text-lg font-bold mb-4">Carregando...</h1>}
+    
+      <div className="overflow-auto rounded-lg max-w-full xl:max-w-[1300px]">
       <table className="table-auto">
         <thead>
           <tr className="text-center text-xl font-medium text-white ">
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               id
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Nome
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               CPF
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Descricao
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Contato
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Contato 2
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Nascimento
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Pais
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               UF
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Cidade
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Rua
             </th>
-            <th className="divide-y divide-white border border-white px-3">
+            <th className="text-sm bg-zinc-900 p-4">
               Habilidades
             </th>
           </tr>
@@ -92,40 +98,40 @@ export default function Candidatos() {
                 key={obj.id}
                 className="text-md text-center font-medium text-white"
               >
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.id}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.name}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.cpf}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.description}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.contact}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.contact2}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.date_birth}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.pais}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.uf}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.city}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.street}
                 </td>
-                <td className="divide-y divide-white border border-white px-3">
+                <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
                   {obj.skills}
                 </td>
               </tr>
@@ -133,6 +139,7 @@ export default function Candidatos() {
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
