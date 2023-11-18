@@ -60,6 +60,7 @@ export default function Vagas() {
               const dados = data || []
               console.log(data)
               setJson(dados)
+              setLoading(false)
             })()
          /*   const consulta1 = fetch('https://zubnbzeluoigqrlekvwg.supabase.co/rest/v1/vacancies', {
                 method: 'GET',
