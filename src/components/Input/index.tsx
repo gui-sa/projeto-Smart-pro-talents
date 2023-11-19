@@ -1,20 +1,8 @@
 /* eslint-disable react/display-name */
 "use client";
-
-// import {useFormContext} from "react-hook-form";
-import {formTypeCandidato} from "./../Forms/Candidato";
 import {InputHTMLAttributes,forwardRef} from "react";
 
-type InputProps = {
-  type?: "text" | "email" | "password" | "date" | "number";
-  label?: string;
-  requiredInput?: boolean;
-  placeholder?: string;
-  WidthHalf?: boolean;
-  className?: string;
-  input?: "input" | "textarea";
-  errors?: string | undefined
-};
+
 type InputProp = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   requiredInput?: boolean;
@@ -39,7 +27,7 @@ input,...props} ,  ref) => {
         <label className="mb-4" htmlFor={label}>
           <p className="text-xl">
             {label}
-            <span className="ml-2 text-xl text-primaryGrayLight">
+            <span className="ml-2 text-xl text-primaryGrayLight ">
               {requiredInput && "*"}
             </span>
           </p>
@@ -50,11 +38,12 @@ input,...props} ,  ref) => {
             ref={ref}
             {...props}
             id={label}
-            className={`h-[71px] w-full bg-primaryDark py-6 pl-5 `}
+            className={`h-[71px] w-full bg-primaryDark py-6 transition-all pl-5 outline-none focus:bg-zinc-950`}
           />
         )}
         {input === "textarea" && (
           <input
+            ref={ref}
             id={label}
             {...props}
             className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}

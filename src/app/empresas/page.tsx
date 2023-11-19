@@ -41,7 +41,6 @@ export default function Empresa() {
         })();
       
     }, []);
-console.log(json)
 
   return (
     <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">
