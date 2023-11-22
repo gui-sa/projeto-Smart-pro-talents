@@ -1,5 +1,6 @@
 import Button from "../../Button";
 import Input from "../../Input";
+import Link from "next/link";
 
 export default function FormVacancies() {
   return (
@@ -130,10 +131,14 @@ export default function FormVacancies() {
             <Input label="Ramo" input="textarea" required />
             <Input label="Cultura" input="textarea" required />
             <Input label="Razão" input="textarea" required /> */}
-
-            <Button cor="blue" type="submit" className="mt-4 self-end">
-              Criar Vaga
+            <div className="flex flex-row justify-center items-center flex-between gap-5 mt-5">
+              <Link href="/vagas">
+                <Button cor="blue">Voltar</Button>
+              </Link>
+              <Button cor="green" type="submit">
+                Confirma
             </Button>
+            </div>
           </form>
         </div>
       </div>
