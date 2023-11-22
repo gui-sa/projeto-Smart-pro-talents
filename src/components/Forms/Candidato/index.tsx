@@ -3,6 +3,7 @@ import Input from "../../Input";
 import {useForm, FormProvider} from "react-hook-form"
 import * as zod from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
+import Link from "next/link";
 
 export const createSchema = zod.object({
   name: zod.string().min(1,"O digite o nome"),
@@ -125,9 +126,15 @@ export default function FormCandidato() {
               />
               <Input input="input" errors={errors.skills?.message} {...register("skills")}label="Habilidades" className="sm:w-full"  placeholder="HTML/CSS/React"/>
             </div>
-            <Button cor="green" type="submit" className="mt-4 self-end">
-              Criar Conta
-            </Button>
+            <div className="flex flex-row justify-center items-center flex-between gap-5 mt-5">
+              <Link href="/candidatos">
+                <Button cor="blue">Voltar</Button>
+              </Link>
+              <Button cor="green" type="submit">
+                Confirma
+              </Button>
+            </div>
+
           </form>
           </FormProvider>
         </div>
