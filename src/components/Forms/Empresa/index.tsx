@@ -1,11 +1,11 @@
+
 import Button from "../../Button";
 import Input from "../../Input";
 import {useForm,FormProvider} from "react-hook-form"
 import * as zod from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
-
-
-
+import {supabase} from "../../../libs/supabase";
+import { useRouter } from "next/navigation";
 
 const schemaCreateCompany = zod.object({
   name: zod.string().min(1,"Nome da empresa é necessário"),
@@ -26,13 +26,24 @@ const schemaCreateCompany = zod.object({
 export type createCompanyType = zod.infer<typeof schemaCreateCompany>
 
 export default function FormCompany() {
+  
   const formCreateCompany = useForm<createCompanyType>({
     resolver: zodResolver(schemaCreateCompany) 
   }) 
   const {handleSubmit,register,formState : {errors}} = formCreateCompany
-function onSubmit(data:createCompanyType) {
-  console.log(data)
-}
+  const router = useRouter()
+  async function onSubmit(data:createCompanyType) {
+    console.log(data)  
+    const { error,data : dados } = await supabase.from("companies").insert({...data, fk_user_id:1}).select()
+      
+      if (error) {
+        throw new Error(error.message) 
+      }
+     router.push("/empresas")
+      
+  }
+
+
 console.log(errors)
 
   return (
