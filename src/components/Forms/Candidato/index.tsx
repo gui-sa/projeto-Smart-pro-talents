@@ -3,7 +3,8 @@ import Input from "../../Input";
 import {useForm, FormProvider} from "react-hook-form"
 import * as zod from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
-
+import { supabase } from "@/libs/supabase";
+import {useRouter} from "next/navigation"
 export const createSchema = zod.object({
   name: zod.string().min(1,"O digite o nome"),
   email: zod.string().email("Preencha corretamente o Email").min(1,"O email é obrigatorio"),
@@ -24,12 +25,18 @@ export type formTypeCandidato = zod.infer<typeof createSchema>;
  
 
 export default function FormCandidato() {
+
+  const router = useRouter()
   const useFormulario = useForm<formTypeCandidato>({
     resolver:zodResolver(createSchema)
   })
   const {handleSubmit,register, formState: {errors}} = useFormulario
-  function onSubmit(data: formTypeCandidato) {
-    console.log(data)
+  async function onSubmit(data: formTypeCandidato) {
+      const {data:dados,error} = await supabase.from("profissionals").insert({...data,description:"",fk_profission_id:1, fk_user_id:1}).select()
+      if (error) {
+        throw new Error(error.message)
+      }
+      router.push("/candidatos")
   }
 
   return (
