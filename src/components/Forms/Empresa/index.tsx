@@ -6,7 +6,9 @@ import * as zod from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import {supabase} from "../../../libs/supabase";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
+export const ERRO_CONFLITO = "23505"
 const schemaCreateCompany = zod.object({
   name: zod.string().min(1,"Nome da empresa é necessário"),
   cnpj:zod.string().min(1,"Cnpj é necessário"),
@@ -35,11 +37,15 @@ export default function FormCompany() {
   async function onSubmit(data:createCompanyType) {
     console.log(data)  
     const { error,data : dados } = await supabase.from("companies").insert({...data, fk_user_id:1}).select()
-      
-      if (error) {
-        throw new Error(error.message) 
-      }
-     router.push("/empresas")
+    try {
+      if (error) 
+        throw new Error(error.message)
+      toast.success("Empresa cadastrada com sucesso")
+      router.push("/empresas")   
+    } catch (error) {
+        console.log(error)
+        toast.error("Erro ao cadastrar")
+    }
       
   }
 

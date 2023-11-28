@@ -83,7 +83,7 @@ export default function Vagas() {
               <Button>Voltar</Button>
           </Link>
           <Link href="/vagas/create">
-              <Button cor="blue">Nova Empresa</Button>
+              <Button cor="blue">Nova Vaga</Button>
           </Link>
       </div>
       {loading && <h1 className="text-white text-lg font-bold mb-4">Carregando...</h1>}

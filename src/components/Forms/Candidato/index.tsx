@@ -5,6 +5,8 @@ import * as zod from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
 import { supabase } from "@/libs/supabase";
 import {useRouter} from "next/navigation"
+import { toast } from "react-toastify";
+import { ERRO_CONFLITO } from "../Empresa";
 export const createSchema = zod.object({
   name: zod.string().min(1,"O digite o nome"),
   email: zod.string().email("Preencha corretamente o Email").min(1,"O email é obrigatorio"),
@@ -32,11 +34,16 @@ export default function FormCandidato() {
   })
   const {handleSubmit,register, formState: {errors}} = useFormulario
   async function onSubmit(data: formTypeCandidato) {
-      const {data:dados,error} = await supabase.from("profissionals").insert({...data,description:"",fk_profission_id:1, fk_user_id:1}).select()
-      if (error) {
-        throw new Error(error.message)
+      try {
+        const {data:dados,error} = await supabase.from("profissionals").insert({...data,description:"",fk_profission_id:1, fk_user_id:1}).select()
+        if (error) 
+          throw new Error(error.message)
+        toast.success("Profissonal cadastrado com sucesso")
+        router.push("/candidatos")   
+      } catch (error) {
+        console.log(error)
+        toast.error("Erro ao cadastrar")
       }
-      router.push("/candidatos")
   }
 
   return (

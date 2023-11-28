@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
+import "react-toastify/ReactToastify.css"
+import {ToastContainer} from "react-toastify"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body >
         {children}
+        <ToastContainer/>
       </body>
     </html>
   )
