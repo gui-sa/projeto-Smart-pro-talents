@@ -7,6 +7,7 @@ import { supabase } from "@/libs/supabase";
 import {useRouter} from "next/navigation"
 import { toast } from "react-toastify";
 import { ERRO_CONFLITO } from "../Empresa";
+import Link from "next/link";
 export const createSchema = zod.object({
   name: zod.string().min(1,"O digite o nome"),
   email: zod.string().email("Preencha corretamente o Email").min(1,"O email é obrigatorio"),
@@ -139,9 +140,15 @@ export default function FormCandidato() {
               />
               <Input input="input" errors={errors.skills?.message} {...register("skills")}label="Habilidades" className="sm:w-full"  placeholder="HTML/CSS/React"/>
             </div>
-            <Button cor="green" type="submit" className="mt-4 self-end">
-              Criar Conta
-            </Button>
+            <div className="flex flex-row justify-center items-center flex-between gap-5 mt-5">
+              <Link href="/candidatos">
+                <Button cor="blue">Voltar</Button>
+              </Link>
+              <Button cor="green" type="submit">
+                Confirma
+              </Button>
+            </div>
+
           </form>
           </FormProvider>
         </div>

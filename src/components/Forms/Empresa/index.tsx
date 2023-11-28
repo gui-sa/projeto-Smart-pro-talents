@@ -7,8 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {supabase} from "../../../libs/supabase";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
 export const ERRO_CONFLITO = "23505"
+import Link from "next/link";
 const schemaCreateCompany = zod.object({
   name: zod.string().min(1,"Nome da empresa é necessário"),
   cnpj:zod.string().min(1,"Cnpj é necessário"),
@@ -139,9 +139,14 @@ console.log(errors)
               <Input label="Razão" placeholder="Descreva a razão da empresa"   errors={errors.reason?.message} {...register("reason")} input="textarea"  />
               <Input {...register("mission")} label="Missão" placeholder="Descreva a missão da empresa"   errors={errors.reason?.message} input="textarea"  />
 
-              <Button cor="blue" type="submit" className="mt-4 self-end">
-                Criar Conta
-              </Button>
+              <div className="flex flex-row justify-center items-center flex-between gap-5 mt-5">
+                <Link href="/empresas">
+                  <Button cor="blue">Voltar</Button>
+                </Link>
+                <Button cor="green" type="submit">
+                  Confirma
+                </Button>
+              </div>
             </form>
           </FormProvider>
         </div>

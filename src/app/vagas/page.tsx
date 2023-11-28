@@ -5,7 +5,6 @@ import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
 import { iEmpresa } from "../empresas/page";
 import { supabase } from "@/libs/supabase";
-// import {supabase} from "../../libs/supabase"
  
 export interface iVagas {
   id:number,
@@ -56,24 +55,12 @@ export default function Vagas() {
 
     useEffect(() => {
             (async()=>{
-              const {data,error} = await supabase.from("vacancies").select("*, companies(*)")
+              const {data,error} = await supabase.from("vacancies").select("*, companies(\"id\",\"name\")")
               const dados = data || []
               console.log(data)
               setJson(dados)
               setLoading(false)
             })()
-         /*   const consulta1 = fetch('https://zubnbzeluoigqrlekvwg.supabase.co/rest/v1/vacancies', {
-                method: 'GET',
-                headers: {
-                  'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1Ym5iemVsdW9pZ3FybGVrdndnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk5ODg5OTQsImV4cCI6MjAxNTU2NDk5NH0.OWcr5QAqdHObatJtiUm3G5yBawPg-NAl3zUnJCV-pnA',
-                  'Content-Type': 'application/json'
-                }
-              }).then((res) => res.json())
-                .then((data) => {
-                setJson(data)
-                
-                }).catch((e)=>console.log(e));
-*/
         }, []);
 
   return (
