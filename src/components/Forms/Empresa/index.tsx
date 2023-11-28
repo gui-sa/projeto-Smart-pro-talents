@@ -1,11 +1,14 @@
+
 import Button from "../../Button";
 import Input from "../../Input";
 import {useForm,FormProvider} from "react-hook-form"
 import * as zod from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import {supabase} from "../../../libs/supabase";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+export const ERRO_CONFLITO = "23505"
 import Link from "next/link";
-
-
 const schemaCreateCompany = zod.object({
   name: zod.string().min(1,"Nome da empresa é necessário"),
   cnpj:zod.string().min(1,"Cnpj é necessário"),
@@ -25,13 +28,28 @@ const schemaCreateCompany = zod.object({
 export type createCompanyType = zod.infer<typeof schemaCreateCompany>
 
 export default function FormCompany() {
+  
   const formCreateCompany = useForm<createCompanyType>({
     resolver: zodResolver(schemaCreateCompany) 
   }) 
   const {handleSubmit,register,formState : {errors}} = formCreateCompany
-function onSubmit(data:createCompanyType) {
-  console.log(data)
-}
+  const router = useRouter()
+  async function onSubmit(data:createCompanyType) {
+    console.log(data)  
+    const { error,data : dados } = await supabase.from("companies").insert({...data, fk_user_id:1}).select()
+    try {
+      if (error) 
+        throw new Error(error.message)
+      toast.success("Empresa cadastrada com sucesso")
+      router.push("/empresas")   
+    } catch (error) {
+        console.log(error)
+        toast.error("Erro ao cadastrar")
+    }
+      
+  }
+
+
 console.log(errors)
 
   return (
