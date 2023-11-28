@@ -8,7 +8,7 @@ type InputProp = InputHTMLAttributes<HTMLInputElement> & {
   requiredInput?: boolean;
   WidthHalf?: boolean;
   className?: string;
-  input?: "input" | "textarea";
+  input?: "input" | "textarea" | "select";
   errors?: string | undefined;
 };
 
@@ -42,6 +42,14 @@ input,...props} ,  ref) => {
           />
         )}
         {input === "textarea" && (
+          <input
+            ref={ref}
+            id={label}
+            {...props}
+            className={`h-[71px] w-full  bg-primaryDark pl-5 pt-4  `}
+          />
+        )}
+        {input === "select" && (
           <input
             ref={ref}
             id={label}
