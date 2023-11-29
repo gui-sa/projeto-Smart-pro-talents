@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import { useState, useEffect } from 'react'
 import { iEmpresa } from "../empresas/page";
 import { supabase } from "@/libs/supabase";
+import {useRouter} from "next/navigation"
  
 export interface iVagas {
   id:number,
@@ -48,9 +49,9 @@ export interface iVagasDTO {
 
 export default function Vagas() {
 
-    const [json, setJson] = useState<iVagasDTO[]>([])
-
-    const [loading,setLoading] = useState(true)
+    const router = useRouter();
+    const [json, setJson] = useState<iVagasDTO[]>([]);
+    const [loading,setLoading] = useState(true);
  
 
     useEffect(() => {
@@ -66,12 +67,16 @@ export default function Vagas() {
   return (
     <div className="bg-primaryDark min-h-screen flex flex-col justify-start items-center overflow-scroll lg:overflow-auto">
       <div className="my-12 text-white flex flex-col justify-center items-center gap-3 md:flex-row lg:flex-row lg:gap-12 ">
-          <Link href="/">
-              <Button>Voltar</Button>
-          </Link>
-          <Link href="/vagas/create">
-              <Button cor="blue">Nova Vaga</Button>
-          </Link>
+          
+          <Button type="button" onClick={()=>{
+              router.push("/");
+
+            }}>Voltar</Button>
+
+          <Button cor="blue" onClick={()=>{
+              router.push("/vagas/create");
+            }}>Nova Vaga</Button>
+
       </div>
       {loading && <h1 className="text-white text-lg font-bold mb-4">Carregando...</h1>}
     
@@ -94,6 +99,8 @@ export default function Vagas() {
             <th className="text-sm bg-zinc-900 p-4">Duração do contrato</th>
             <th className="text-sm bg-zinc-900 p-4">Idiomas</th>
             <th className="text-sm bg-zinc-900 p-4">Status</th>
+            <th className="text-sm bg-zinc-900 p-4">Inscrever Novo</th>
+            <th className="text-sm bg-zinc-900 p-4">Visualizar</th>
           </tr>
         </thead>
         <tbody>
@@ -116,7 +123,17 @@ export default function Vagas() {
                             <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.duration}</td>
                             <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.languages}</td>
                             <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">{obj.status}</td>
-                            </tr>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
+                                <Button type="button" onClick={()=>{
+                                    router.push(`/vagas/${obj.id}/create`);
+                                  }}>Inscrever Aluno</Button>
+                                </td>
+                            <td className="p-4 border-t-2 border-solid border-zinc-900 bg-zinc-950 text-sm font-medium">
+                                <Button cor="blue" type="button" onClick={()=>{
+                                    router.push(`/vagas/${obj.id}`);
+                                  }}>Visualizar Inscritos</Button>
+                                </td>
+                            </tr> 
                         );
                     })
             }
