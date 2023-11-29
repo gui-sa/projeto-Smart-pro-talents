@@ -90,7 +90,8 @@ export default function FormVacancies() {
                   className="mt-3 h-[71px] w-full bg-primaryDark py-6 transition-all pl-5 outline-none focus:bg-zinc-950">
                   {json.map((obj)=>{
                     return(
-                        <option 
+                        <option
+                        key={obj.id} 
                         value={obj.id}
                         className="h-[71px] w-full bg-primaryDark py-6 transition-all pl-5 outline-none focus:bg-zinc-950"
                         >{obj.name}
